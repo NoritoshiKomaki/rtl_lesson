@@ -5,6 +5,7 @@ import { Framework } from './types';
 import UseEffectRender from './UseEffectRender';
 import MockServer from './MockServer';
 import Redux from './Redux';
+import ReduxAsync from './ReduxAsync';
 
 const data: Framework[] = [
     { id: 1, item: 'React' },
@@ -25,6 +26,7 @@ const App = () => {
                 <UseEffectRender />
                 <MockServer />
                 <Redux />
+                <ReduxAsync />
             </header>
         </div>
     );

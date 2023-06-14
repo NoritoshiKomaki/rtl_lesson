@@ -28,4 +28,33 @@ describe('Redux Integration Test', () => {
         }
         expect(screen.getByTestId('count-value')).toHaveTextContent('3');
     });
+    it('Should display value with decrement by 1 per click', async () => {
+        render(
+            <Provider store={store}>
+                <Redux />
+            </Provider>
+        );
+        for (let index = 0; index < 2; index++) {
+            await waitFor(async () => {
+                await userEvent.click(screen.getByText('-'));
+            });
+        }
+        expect(screen.getByTestId('count-value')).toHaveTextContent('-2');
+    });
+    it('Should display value with incrementByAmount', async () => {
+        render(
+            <Provider store={store}>
+                <Redux />
+            </Provider>
+        );
+        await waitFor(async () => {
+            await userEvent.type(screen.getByPlaceholderText('Enter'), '30');
+        });
+        for (let index = 0; index < 2; index++) {
+            await waitFor(async () => {
+                await userEvent.click(screen.getByText('IncrementByAmount'));
+            });
+        }
+        expect(screen.getByTestId('count-value')).toHaveTextContent('60');
+    });
 });
