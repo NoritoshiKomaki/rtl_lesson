@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
@@ -21,12 +21,14 @@ describe('ReduxAsync Test', () => {
                 <ReduxAsync />
             </Provider>
         );
-        // eslint-disable-next-line testing-library/no-unnecessary-act
-        // await act(async () => {
-        //     await userEvent.click(screen.getByText('FetchDummy'));
-        // });
-        // expect(await screen.findByTestId('count-value')).toHaveTextContent(
-        //     '105'
-        // );
+        await waitFor(
+            async () => {
+                await userEvent.click(screen.getByText('FetchDummy'));
+            },
+            { timeout: 3000 }
+        );
+        expect(await screen.findByTestId('count-value')).toHaveTextContent(
+            '105'
+        );
     });
 });
