@@ -4,6 +4,7 @@ import FrameworkList from './FrameworkList';
 import { Framework } from './types';
 import UseEffectRender from './UseEffectRender';
 import MockServer from './MockServer';
+import Redux from './Redux';
 
 const data: Framework[] = [
     { id: 1, item: 'React' },
@@ -23,6 +24,7 @@ const App = () => {
                 <FrameworkList frameworks={data} />
                 <UseEffectRender />
                 <MockServer />
+                <Redux />
             </header>
         </div>
     );
