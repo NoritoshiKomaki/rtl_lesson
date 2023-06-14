@@ -6,3 +6,5 @@ export const store = configureStore({
         customCounter: customCounterReducer,
     },
 });
+
+export type AppDispatch = typeof store.dispatch;
