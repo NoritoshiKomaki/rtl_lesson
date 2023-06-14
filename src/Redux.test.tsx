@@ -22,9 +22,9 @@ describe('Redux Integration Test', () => {
             </Provider>
         );
         for (let index = 0; index < 3; index++) {
-            await waitFor(async () => {
-                await userEvent.click(screen.getByText('+'));
-            });
+            await waitFor(
+                async () => await userEvent.click(screen.getByText('+'))
+            );
         }
         expect(screen.getByTestId('count-value')).toHaveTextContent('3');
     });
@@ -35,9 +35,9 @@ describe('Redux Integration Test', () => {
             </Provider>
         );
         for (let index = 0; index < 2; index++) {
-            await waitFor(async () => {
-                await userEvent.click(screen.getByText('-'));
-            });
+            await waitFor(
+                async () => await userEvent.click(screen.getByText('-'))
+            );
         }
         expect(screen.getByTestId('count-value')).toHaveTextContent('-2');
     });
@@ -47,13 +47,15 @@ describe('Redux Integration Test', () => {
                 <Redux />
             </Provider>
         );
-        await waitFor(async () => {
-            await userEvent.type(screen.getByPlaceholderText('Enter'), '30');
-        });
+        await waitFor(
+            async () =>
+                await userEvent.type(screen.getByPlaceholderText('Enter'), '30')
+        );
         for (let index = 0; index < 2; index++) {
-            await waitFor(async () => {
-                await userEvent.click(screen.getByText('IncrementByAmount'));
-            });
+            await waitFor(
+                async () =>
+                    await userEvent.click(screen.getByText('IncrementByAmount'))
+            );
         }
         expect(screen.getByTestId('count-value')).toHaveTextContent('60');
     });

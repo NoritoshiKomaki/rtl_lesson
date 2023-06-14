@@ -22,9 +22,7 @@ describe('ReduxAsync Test', () => {
             </Provider>
         );
         await waitFor(
-            async () => {
-                await userEvent.click(screen.getByText('FetchDummy'));
-            },
+            async () => await userEvent.click(screen.getByText('FetchDummy')),
             { timeout: 3000 }
         );
         expect(await screen.findByTestId('count-value')).toHaveTextContent(
