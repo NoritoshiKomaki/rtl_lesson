@@ -19,4 +19,4 @@ jobs:
 
       - name: Execute External API with Reviewer Info
         run: |
-          node /script.js
+          node script.js
