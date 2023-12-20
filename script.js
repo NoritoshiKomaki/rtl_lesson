@@ -7,28 +7,6 @@ const webhookUrl =
 // メッセージを構築
 const message = {
   text: "GitHub Actions からの通知: Pull Request がオープンまたは更新されました。",
-  attachments: [
-    {
-      color: "#36a64f",
-      fields: [
-        {
-          title: "リポジトリ",
-          value: process.env.GITHUB_REPOSITORY,
-          short: true,
-        },
-        {
-          title: "プルリクエスト",
-          value:
-            process.env.GITHUB_SERVER_URL +
-            "/" +
-            process.env.GITHUB_REPOSITORY +
-            "/pull/" +
-            process.env.GITHUB_PULL_REQUEST,
-          short: true,
-        },
-      ],
-    },
-  ],
 };
 
 // Slackにメッセージを送信
