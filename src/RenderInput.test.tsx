@@ -17,9 +17,7 @@ describe('Input from onChange event', () => {
         render(<RenderInput />);
         const inputValue: HTMLInputElement =
             screen.getByPlaceholderText('Enter');
-        await waitFor(async () => {
-            await userEvent.type(inputValue, 'test');
-        });
+        await waitFor(async () => await userEvent.type(inputValue, 'test'));
         expect(inputValue.value).toBe('test');
     });
 });
@@ -35,9 +33,7 @@ describe('Console button conditionally triggerd', () => {
         const outputConsole = jest.fn();
         render(<RenderInput outputConsole={outputConsole} />);
         const inputValue = screen.getByPlaceholderText('Enter');
-        await waitFor(async () => {
-            await userEvent.type(inputValue, 'test');
-        });
+        await waitFor(async () => await userEvent.type(inputValue, 'test'));
         await userEvent.click(screen.getByRole('button'));
         expect(outputConsole).toHaveBeenCalledTimes(1);
     });

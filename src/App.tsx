@@ -6,6 +6,7 @@ import UseEffectRender from './UseEffectRender';
 import MockServer from './MockServer';
 import Redux from './Redux';
 import ReduxAsync from './ReduxAsync';
+import CustomHooks from './CustomHooks';
 
 const data: Framework[] = [
     { id: 1, item: 'React' },
@@ -27,6 +28,7 @@ const App = () => {
                 <MockServer />
                 <Redux />
                 <ReduxAsync />
+                <CustomHooks />
             </header>
         </div>
     );

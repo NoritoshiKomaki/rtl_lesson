@@ -37,9 +37,9 @@ describe('Redux Async API Mocking', () => {
             </Provider>
         );
         expect(screen.queryByRole('heading')).toBeNull();
-        await waitFor(async () => {
-            await userEvent.click(screen.getByText('FetchJSON'));
-        });
+        await waitFor(
+            async () => await userEvent.click(screen.getByText('FetchJSON'))
+        );
         expect(await screen.findByText('Bred dummy')).toBeInTheDocument();
     });
     it('[Fetch failed] Should display anonymous in h3 tag', async () => {
@@ -55,9 +55,9 @@ describe('Redux Async API Mocking', () => {
             </Provider>
         );
         expect(screen.queryByRole('heading')).toBeNull();
-        await waitFor(async () => {
-            await userEvent.click(screen.getByText('FetchJSON'));
-        });
+        await waitFor(
+            async () => await userEvent.click(screen.getByText('FetchJSON'))
+        );
         expect(await screen.findByText('anonymous')).toBeInTheDocument();
     });
 });
