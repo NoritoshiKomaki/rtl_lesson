@@ -18,6 +18,4 @@ jobs:
           TOKEN="${{ secrets.GITHUB_TOKEN }}"
 
       - name: Execute External API with Reviewer Info
-        uses: ./.github/workflows/action-a
-        run: |
-          node rtl_lesson/script.js
+        main: "script.js"
