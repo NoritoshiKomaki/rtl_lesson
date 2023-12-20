@@ -18,5 +18,4 @@ jobs:
           TOKEN="${{ secrets.GITHUB_TOKEN }}"
 
       - name: Execute External API with Reviewer Info
-        run: |
-          node ./script.js
+        run: ls -R
