@@ -11,12 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get Reviewers
-        id: get_reviewers
-        run: |
-          PR_NUMBER="${{ github.event.pull_request.number }}"
-          TOKEN="${{ secrets.GITHUB_TOKEN }}"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      - name: Execute External API with Reviewer Info
-        run: |
-          node /script.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "14"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Execute API Request
+        run: node script.js
