@@ -1,20 +1,28 @@
-name: Test CI
+name: Execute External API with Reviewer Info
 
 on:
-    push:
-        branches:
-            - main
-            - 'feature/**'
-jobs:
-    test:
-        runs-on: ubuntu-latest
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
-        steps:
-            - uses: actions/checkout@v3
-            - name: Use Node.js 16.13.1
-              uses: actions/setup-node@v3
-              with:
-                  node-version: '16.13.1'
-                  cache: 'npm'
-            - run: npm i
-            - run: npm test
+jobs:
+  execute_api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Reviewers
+        id: get_reviewers
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          TOKEN="${{ secrets.GITHUB_TOKEN }}"
+
+          REVIEWERS=$(curl -s -H "Authorization: Bearer $TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/reviews" | jq -r '.[] | .user.login')
+
+          echo "::set-output name=reviewers::$REVIEWERS"
+
+      - name: Execute External API with Reviewer Info
+        run: |
+          REVIEWERS="${{ steps.get_reviewers.outputs.reviewers }}"
+          node script.js "$REVIEWERS"
