@@ -18,4 +18,5 @@ jobs:
           TOKEN="${{ secrets.GITHUB_TOKEN }}"
 
       - name: Execute External API with Reviewer Info
+        using: "node16"
         main: "script.js"
